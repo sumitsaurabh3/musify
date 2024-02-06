@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../audio.dart';
 import '../../data.dart';
 
 class Playlists extends StatelessWidget {
@@ -15,6 +16,14 @@ class Playlists extends StatelessWidget {
     ),
     children: Data().playlist.map((val){
       return  InkWell(
+        onTap:(){
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return AudioPlayerPro(
+                audioURL: val['audio'].toString(),
+                image: val['image'].toString(),
+                name: val['name'].toString());
+          }),);
+        },
         child: Card(
           color: Colors.black12,
           child: IntrinsicHeight(

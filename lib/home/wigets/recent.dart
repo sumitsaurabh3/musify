@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:spotify_clone/audio.dart';
 import '../../data.dart';
 
 class RecentlyPlayed extends StatelessWidget {
@@ -27,6 +28,12 @@ class RecentlyPlayed extends StatelessWidget {
                   crossAxisAlignment: Data().recentlyPlayed[index]['alignment']as CrossAxisAlignment,
                   children: [
                     InkWell(
+                      onTap:(){
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return AudioPlayerPro(audioURL: Data().recentlyPlayed[index]['audio'].toString(),
+                              image: Data().recentlyPlayed[index]['image'].toString(), name: Data().recentlyPlayed[index]['name'].toString());
+                        }),);
+              },
                      child: Container(
                        child: GFAvatar(
                               shape: Data().recentlyPlayed[index]['shape'] as GFAvatarShape,

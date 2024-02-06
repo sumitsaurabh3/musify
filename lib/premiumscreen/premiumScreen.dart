@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spotify_clone/premiumscreen/widgets/buttons.dart';
 import 'package:spotify_clone/premiumscreen/widgets/cards.dart';
 import 'package:spotify_clone/premiumscreen/widgets/currentplan.dart';
+import 'package:spotify_clone/premiumscreen/widgets/premiumplan.dart';
 
 import '../bottomNavBar.dart';
 
@@ -16,7 +17,7 @@ class PremiumScreen extends StatelessWidget {
         body: ListView(
         children: const [
            SizedBox(height: 70,),
-          Text("Get 12 months of \n Premium for ₹200",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 35,),),
+          Text("Get 9 months of \n Premium for ₹100",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 35,fontWeight: FontWeight.bold),),
           Cards(),
          Buttons(text:"GET PREMIUM"),
           SizedBox(height: 10,),
@@ -27,6 +28,8 @@ class PremiumScreen extends StatelessWidget {
                 "a 12-month one-time Premium plan at a promotional price. Offer ends 30/03/24.",style: TextStyle(color: Color.fromRGBO(184, 184, 184, 10),fontSize: 14,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
           ),
           CurrentPlan(),
+
+          PremiumPlan(),
         ],
       ),
         bottomNavigationBar: BottomNavBar(3),

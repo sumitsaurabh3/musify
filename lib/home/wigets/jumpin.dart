@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:getwidget/getwidget.dart';
+import '../../audio.dart';
 import '../../data.dart';
 
 class JumpIn extends StatelessWidget {
@@ -27,6 +28,14 @@ class JumpIn extends StatelessWidget {
                     crossAxisAlignment: Data().anotherRandomList[index]['alignment']as CrossAxisAlignment,
                     children: [
                       InkWell(
+                        onTap:(){
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return AudioPlayerPro(
+                                audioURL: Data().anotherRandomList[index]['audio'].toString(),
+                                image: Data().anotherRandomList[index]['image'].toString(),
+                                name: Data().anotherRandomList[index]['name'].toString());
+                          }),);
+                        },
                         child: Container(
                           child: GFAvatar(
                             shape: Data().anotherRandomList[index]['shape'] as GFAvatarShape,

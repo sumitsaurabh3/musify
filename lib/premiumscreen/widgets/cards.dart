@@ -37,7 +37,7 @@ class Cards extends StatelessWidget {
                  Container(
                    height: 140,
                    width: 140,
-                   decoration: BoxDecoration(
+                   decoration: const BoxDecoration(
                      gradient: LinearGradient(
                        begin:Alignment.topLeft,
                        end: Alignment.bottomRight,
