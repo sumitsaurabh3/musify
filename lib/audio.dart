@@ -1,6 +1,9 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:spotify_clone/utils/notify.dart';
 
 class AudioPlayerPro extends StatefulWidget {
   const AudioPlayerPro(
@@ -16,6 +19,39 @@ class AudioPlayerPro extends StatefulWidget {
 }
 
 class _AudioPlayerProState extends State<AudioPlayerPro> {
+  Notify notify=Get.find();
+  Duration _duration=Duration();
+  Duration _position=Duration();
+
+ static AudioPlayer advancedPlayer=AudioPlayer();
+
+ @override
+  void initState() {
+   initPlayer();
+    super.initState();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+  }
+  void initPlayer() {
+    advancedPlayer = AudioPlayer();
+    advancedPlayer.onDurationChanged.listen((dur) {
+      setState(() {
+        _duration = dur;
+      });
+    });
+
+     advancedPlayer.onPositionChanged.listen((pos) {
+       setState(() {
+         _duration = pos;
+       });
+   });
+  }
+  void seekToSecond(second){
+   Duration newDuration=Duration(seconds: second);
+   advancedPlayer.seek(newDuration);
+  }
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
@@ -185,7 +221,9 @@ class _AudioPlayerProState extends State<AudioPlayerPro> {
                         )),
                     Center(
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          notify.isIconPlay.value=notify.isIconPlay.value?false:true;
+                        },
                         iconSize: 70,
                         alignment: Alignment.center,
                         icon: const Icon(
