@@ -27,7 +27,7 @@ class _ButtonsState extends State<Buttons> {
       _razorpay.open({
        'name': 'Spotify Premium',
        'key' :'rzp_live_ILgsfZCZoFIKMb',
-        'amount' :10000,
+        'amount' :'10000',
         'description':'general',
         'retry' :{'enabled':true,'max_count':1},
         'send_sms_hash':true,

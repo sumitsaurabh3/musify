@@ -2,9 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 import 'package:spotify_clone/premiumscreen/premiumScreen.dart';
 import 'package:spotify_clone/searchscreen/searchscreen.dart';
 import 'package:spotify_clone/utils/notify.dart';
+
 import 'home/homepage.dart';
 import 'libraryscreen/libraryScreen.dart';
 
@@ -13,15 +16,22 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Notify notify = Get.put(Notify());
+  @override
   Widget build(BuildContext context) {
-    Notify notify=Get.put(Notify());
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
