@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:spotify_clone/utils/notify.dart';
 
 class AudioPlayerPro extends StatefulWidget {
@@ -51,6 +52,11 @@ class _AudioPlayerProState extends State<AudioPlayerPro> {
   void seekToSecond(second){
    Duration newDuration=Duration(seconds: second);
    advancedPlayer.seek(newDuration);
+  }
+  double setChanged(){
+   Duration newDuration=Duration(seconds: 0);
+   advancedPlayer.seek(newDuration);
+   return 0.0;
   }
   @override
   Widget build(BuildContext context) {
@@ -146,13 +152,18 @@ class _AudioPlayerProState extends State<AudioPlayerPro> {
                       ],
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
+                      onPressed: () {
+                        notify.isHeartPressed.value=notify.isHeartPressed.value?false:true;},
+                      icon: Obx(() => (notify.isHeartPressed.value)? const Icon(
+                        LineIcons.heartAlt,
+                        color: Colors.red,
+                        size: 24,
+                      ): const Icon(
                         LineIcons.heart,
                         color: Colors.white,
                         size: 24,
                       ),
-                    ),
+                    ),),
                   ],
                 ),
               ),
@@ -166,15 +177,22 @@ class _AudioPlayerProState extends State<AudioPlayerPro> {
                           activeTrackColor: Colors.grey.shade600,
                           activeTickMarkColor: Colors.white,
                           trackHeight: 3,
-                          thumbShape: const RoundSliderThumbShape(
+                          thumbShape:  const RoundSliderThumbShape(
                               enabledThumbRadius: 6)),
                       child: Slider(
-                        value: 0,
-                        onChanged: (double value) {},
+                        value: (_position.inSeconds.toDouble()!=_duration.inSeconds.toDouble())?_position.inSeconds.toDouble():setChanged(),
+                        onChanged: (value) {
+                          setState(() {
+                            seekToSecond(value.toInt());
+                            value=value;
+                          });
+                        },
+                        max: _duration.inSeconds.toDouble(),
+                        min: 0,
                       ),
                     ),
                   ),
-                  const Padding(
+                   Padding(
                     padding: EdgeInsets.only(
                       left: 25,
                       right: 25,
@@ -183,14 +201,14 @@ class _AudioPlayerProState extends State<AudioPlayerPro> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '0:00',
+                          '${_position.inMinutes.toInt()}:${(_position.inSeconds % 60).toString().padLeft(2,"0")}',
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey,
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          '0:00',
+                            '${_duration.inMinutes.toInt()}:${(_duration.inSeconds % 60).toString().padLeft(2,"0")}',
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey,
@@ -223,16 +241,28 @@ class _AudioPlayerProState extends State<AudioPlayerPro> {
                       child: IconButton(
                         onPressed: () {
                           notify.isIconPlay.value=notify.isIconPlay.value?false:true;
+                          if(notify.isIconPlay.value){
+                            advancedPlayer.play(UrlSource(widget.audioURL));
+                          }
+                          else{
+                            advancedPlayer.pause();
+                          }
                         },
                         iconSize: 70,
                         alignment: Alignment.center,
-                        icon: const Icon(
-                          Icons.play_circle_fill,
+                        icon: Obx(()=>(notify.isIconPlay.value)?
+                         Icon(
+                          Icons.pause_circle_filled,
+                          color: Colors.white,
+                          size: 50,
+                        ):
+                         Icon(
+                          Icons.play_circle_filled,
                           color: Colors.white,
                           size: 50,
                         ),
                       ),
-                    ),
+                    ),),
                     InkWell(
                 onTap:(){},
                       child: const Icon(
@@ -265,7 +295,9 @@ class _AudioPlayerProState extends State<AudioPlayerPro> {
                     ),
                     const Spacer(flex: 5,),
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Share.share("https://spotify/songid-32165104");
+                        },
                         child: const Icon(
                           Icons.share_outlined ,
                           color: Colors.grey,

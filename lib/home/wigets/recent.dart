@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:spotify_clone/audio.dart';
 import '../../data.dart';
