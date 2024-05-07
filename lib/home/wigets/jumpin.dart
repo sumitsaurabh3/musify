@@ -21,6 +21,8 @@ class JumpIn extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: Data().anotherRandomList.length,
               itemBuilder: (context,index){
+                Map<String, dynamic> item = Data().anotherRandomList[index];
+                int id = item['id'] != null ? int.tryParse(item['id'].toString()) ?? 0 : 0;
                 return Container(
                   width: 150,
                   padding: const EdgeInsets.fromLTRB(5, 20, 5, 10),
@@ -31,6 +33,7 @@ class JumpIn extends StatelessWidget {
                         onTap:(){
                           Navigator.push(context, MaterialPageRoute(builder: (context){
                             return AudioPlayerPro(
+                                id: id,
                                 audioURL: Data().anotherRandomList[index]['audio'].toString(),
                                 image: Data().anotherRandomList[index]['image'].toString(),
                                 name: Data().anotherRandomList[index]['name'].toString());

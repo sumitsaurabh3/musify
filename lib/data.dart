@@ -4,32 +4,38 @@ import 'package:getwidget/shape/gf_avatar_shape.dart';
 
 class Data {
   var playlist = [
-    {
+    { 'id':1,
+      'isFavorite':'false',
       'name': 'Alicia Keys',
       'image': 'assets/images/aliciakeys.png',
       'audio': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2e/e2/7d/2ee27d35-5e1e-0fd0-42ea-359b5256403e/mzaf_9335390342361255150.plus.aac.p.m4a'
     },
-    {
+    { 'id':2,
+      'isFavorite':'false',
       'name': 'Where the Light',
       'image': 'assets/images/johnmayer.png',
       'audio': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2e/e2/7d/2ee27d35-5e1e-0fd0-42ea-359b5256403e/mzaf_9335390342361255150.plus.aac.p.m4a'
     },
-    {
+    {  'id':3,
+      'isFavorite':'false',
       'name': 'Pesa Nasha Pyar',
       'image': 'assets/images/bohemia.png',
       'audio': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2e/e2/7d/2ee27d35-5e1e-0fd0-42ea-359b5256403e/mzaf_9335390342361255150.plus.aac.p.m4a'
     },
-    {
+    {  'id':4,
+      'isFavorite':'false',
       'name': 'This is Eric',
       'image': 'assets/images/ericclapton.png',
       'audio': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2e/e2/7d/2ee27d35-5e1e-0fd0-42ea-359b5256403e/mzaf_9335390342361255150.plus.aac.p.m4a'
     },
-    {
+    { 'id':5,
+      'isFavorite':'false',
       'name': 'Bealtes',
       'image': 'assets/images/beatles.png',
       'audio': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2e/e2/7d/2ee27d35-5e1e-0fd0-42ea-359b5256403e/mzaf_9335390342361255150.plus.aac.p.m4a'
     },
-    {
+    { 'id':6,
+      'isFavorite':'false',
       'name': 'Gentle Guitar',
       'image': 'assets/images/gentleguitar.png',
       'audio': 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2e/e2/7d/2ee27d35-5e1e-0fd0-42ea-359b5256403e/mzaf_9335390342361255150.plus.aac.p.m4a'
@@ -187,4 +193,5 @@ class Data {
       'premium': 'Group session',
     },
   ];
+
 }

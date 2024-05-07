@@ -41,10 +41,10 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 10,),
                 Container(
                   height: 200,
-                  child: const Playlists(),
+                  child:  Playlists(),
                 ),
-                const RecentlyPlayed(),
-                const JumpIn(),
+                 RecentlyPlayed(),
+                JumpIn(),
               ],
             ),
           ),

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:spotify_clone/audio.dart';
@@ -20,6 +22,8 @@ class RecentlyPlayed extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: Data().recentlyPlayed.length,
                 itemBuilder: (context,index){
+                  Map<String, dynamic> item = Data().recentlyPlayed[index];
+                  int id = item['id'] != null ? int.tryParse(item['id'].toString()) ?? 0 : 0;
               return Container(
                 width: 150,
                 padding: const EdgeInsets.fromLTRB(5, 20, 5, 10),
@@ -29,18 +33,21 @@ class RecentlyPlayed extends StatelessWidget {
                     InkWell(
                       onTap:(){
                         Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return AudioPlayerPro(audioURL: Data().recentlyPlayed[index]['audio'].toString(),
-                              image: Data().recentlyPlayed[index]['image'].toString(), name: Data().recentlyPlayed[index]['name'].toString());
-                        }),);
+                         return AudioPlayerPro(
+                            id:id,
+                            audioURL: Data().recentlyPlayed[index]['audio'].toString(),
+                            image: Data().recentlyPlayed[index]['image'].toString(),
+                            name: Data().recentlyPlayed[index]['name'].toString());
+
+                           },),
+     );
               },
-                     child: Container(
-                       child: GFAvatar(
-                              shape: Data().recentlyPlayed[index]['shape'] as GFAvatarShape,
-                         backgroundImage: AssetImage(
-                           Data().recentlyPlayed[index]['image'].toString(),
-                         ),
-                         radius: 70,
+                     child: GFAvatar(
+                            shape: Data().recentlyPlayed[index]['shape'] as GFAvatarShape,
+                       backgroundImage: AssetImage(
+                         Data().recentlyPlayed[index]['image'].toString(),
                        ),
+                       radius: 70,
                      ),
                     ),
                     const SizedBox(height: 10,),

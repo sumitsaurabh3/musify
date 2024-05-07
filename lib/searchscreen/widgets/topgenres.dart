@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/searchscreen/widgets/tiles.dart';
 
+
 import '../../data.dart';
 class TopGenres extends StatelessWidget {
   const TopGenres({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return  Padding(
       padding: EdgeInsets.only(left: 8.0),
       child: Column(

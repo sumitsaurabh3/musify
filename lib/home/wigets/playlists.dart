@@ -19,6 +19,7 @@ class Playlists extends StatelessWidget {
         onTap:(){
           Navigator.push(context, MaterialPageRoute(builder: (context){
             return AudioPlayerPro(
+                 id:int.parse((val['id']).toString()),
                 audioURL: val['audio'].toString(),
                 image: val['image'].toString(),
                 name: val['name'].toString());
